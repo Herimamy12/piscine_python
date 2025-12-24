@@ -10,8 +10,7 @@ class Plant:
         self._age = age
 
     def blueprint(self) -> None:
-        print(self._name, ": ", self._height, "cm ", sep="", end="")
-        print(self._age, " days old", sep="")
+        print(f"{self._name}: {self._height}cm {self._age} days old")
 
     def grow(self) -> None:
         self._height += week_growth
