@@ -7,6 +7,7 @@ def cout(number, value):
         number -= 1
         cout(number, value)
 
+
 def ft_count_harvest_recursive():
     days = int(input("Days until harvest: ")) - 1
     out = 1
