@@ -13,9 +13,7 @@ class Plant:
 
 if __name__ == "__main__":
     print("=== Garden Plant Registry ===")
-    rose = Plant("Rose", 25, 30)
-    sunflower = Plant("Sunflower", 80, 45)
-    cactus = Plant("Cactus", 15, 120)
-    rose.blueprint()
-    sunflower.blueprint()
-    cactus.blueprint()
+    tab = [Plant("Rose", 25, 30), Plant("Sunflower", 80, 45)]
+    tab.append(Plant("Cactus", 15, 120))
+    for plant in tab:
+        plant.blueprint()
