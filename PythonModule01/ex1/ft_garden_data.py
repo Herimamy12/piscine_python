@@ -1,14 +1,14 @@
 #!/usrc/bin/env/ python3
 
 class Plant:
-    def __init__(this, name: str, height: int, age: int) -> None:
-        this._name = name
-        this._height = height
-        this._age = age
+    def __init__(self, name: str, height: int, age: int) -> None:
+        self._name = name
+        self._height = height
+        self._age = age
 
-    def blueprint(this) -> None:
-        print(this._name, ": ", this._height, "cm ", sep="", end="")
-        print(this._age, " days old", sep="")
+    def blueprint(self) -> None:
+        print(self._name, ": ", self._height, "cm ", sep="", end="")
+        print(self._age, " days old", sep="")
 
 
 if __name__ == "__main__":

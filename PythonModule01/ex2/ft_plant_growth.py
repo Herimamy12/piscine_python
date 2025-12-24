@@ -1,34 +1,38 @@
 #!/usrc/bin/env/ python3
 
+week_growth: int = 6
+
+
 class Plant:
-    def __init__(this, name: str, height: int, age: int) -> None:
-        this._name = name
-        this._height = height
-        this._age = age
-        this._growth_info = 0
+    def __init__(self, name: str, height: int, age: int) -> None:
+        self._name = name
+        self._height = height
+        self._age = age
 
-    def blueprint(this) -> None:
-        print(this._name, ": ", this._height, "cm ", sep="", end="")
-        print(this._age, " days old", sep="")
+    def blueprint(self) -> None:
+        print(self._name, ": ", self._height, "cm ", sep="", end="")
+        print(self._age, " days old", sep="")
 
-    def grow(this, days: int) -> None:
-        this._height += days
-        this._growth_info += days
+    def grow(self) -> None:
+        self._height += week_growth
 
-    def age(this, days: int) -> None:
-        this._age += days
+    def age(self) -> None:
+        self._age += week_growth
 
-    def get_info(this) -> int:
-        return this._growth_info
+    def get_info(self) -> str:
+        return f"{self._name}: {self._height}cm {self._age} days old"
 
 
 if __name__ == "__main__":
-    days: int = 6
-    rose = Plant("Rose", 25, 30)
+    print("=== Garden Plant Registry ===")
+    tab = [Plant("Rose", 25, 30), Plant("Sunflower", 80, 45)]
+    tab.append(Plant("Cactus", 15, 120))
     print("=== Day 1 ===")
-    rose.blueprint()
-    rose.grow(days)
-    rose.age(days)
+    for plant in tab:
+        plant.blueprint()
+        plant.grow()
+        plant.age()
     print("=== Day 7 ===")
-    rose.blueprint()
-    print("Growth this week: +", rose.get_info(), "cm", sep="")
+    for p in tab:
+        print(p.get_info())
+    print(f"Growth this week: +{week_growth}cm")
