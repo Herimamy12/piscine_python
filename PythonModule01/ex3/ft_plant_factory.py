@@ -2,13 +2,13 @@
 
 class Plant:
     def __init__(self, name: str, height: int, age: int) -> None:
-        self._name = name
-        self._height = height
-        self._age = age
+        self.__name = name
+        self.__height = height
+        self.__age = age
         print(f"Created: {name}: {height}cm {age} days old")
 
     def blueprint(self) -> None:
-        print(f"{self._name}: {self._height}cm {self._age} days old")
+        print(f"{self.__name}: {self.__height}cm {self.__age} days old")
 
 
 if __name__ == "__main__":
