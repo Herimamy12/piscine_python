@@ -1,0 +1,44 @@
+Authorized: class, __init__, super(), print(), staticmethod(), classmethod()
+
+Build a comprehensive garden data analytics platform that processes and analyzes garden data. This system needs to handle complex data relationships and provide detailed
+analytics using nested components and inheritance chains.
+
+Requirements:
+• Create a GardenManager that can handle multiple gardens
+• Include a helper GardenStats inside your manager for calculating statistics
+• Build a plant family tree: Plant → FloweringPlant → PrizeFlower
+• Include a method create_garden_network() that works on the manager type itself
+• Add utility functions that don’t need specific garden data
+• Show different types of methods: instance methods, class-level methods, and utility functions
+• Each garden should track plant collections and statistics
+• Use your nested statistics helper to calculate analytics
+• Organize everything within appropriate structures - avoid scattered global functions
+
+Consider how you might organize complex systems with multiple interacting components.
+What happens when you need different types of methods?
+
+Example:
+$> python3 ft_garden_analytics.py
+=== Garden Management System Demo ===
+
+Added Oak Tree to Alice's garden
+Added Rose to Alice's garden
+Added Sunflower to Alice's garden
+
+Alice is helping all plants grow...
+Oak Tree grew 1cm
+Rose grew 1cm
+Sunflower grew 1cm
+
+=== Alice's Garden Report ===
+Plants in garden:
+- Oak Tree: 101cm
+- Rose: 26cm, red flowers (blooming)
+- Sunflower: 51cm, yellow flowers (blooming), Prize points: 10
+
+Plants added: 3, Total growth: 3cm
+Plant types: 1 regular, 1 flowering, 1 prize flowers
+
+Height validation test: True
+Garden scores - Alice: 218, Bob: 92
+Total gardens managed: 2
