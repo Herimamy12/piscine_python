@@ -1,18 +1,12 @@
 #!/usr/bin/env/ python3
 
 def ft_seed_inventory(seed_type: str, quantity: int, unit: str) -> None:
-    pref_ix: str
-    suff_ix: str
+    seed_type = seed_type.capitalize()
     if (unit == "packets"):
-        pref_ix = seed_type.capitalize() + " seeds:"
-        suff_ix = "packets available"
+        print(f"{seed_type} seeds: {quantity} packets available")
     elif (unit == "grams"):
-        pref_ix = seed_type.capitalize() + " seeds:"
-        suff_ix = "grams total"
+        print(f"{seed_type} seeds: {quantity} grams total")
     elif (unit == "area"):
-        pref_ix = seed_type.capitalize() + " seeds: covers"
-        suff_ix = "square meters"
+        print(f"{seed_type} seeds: covers {quantity} square meters")
     else:
         print("Unknown unit type")
-        return
-    print(pref_ix, quantity, suff_ix, sep=" ")
