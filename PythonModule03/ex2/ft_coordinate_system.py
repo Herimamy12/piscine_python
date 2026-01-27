@@ -62,5 +62,5 @@ if __name__ == "__main__":
 
     print("Unpacking demonstration:")
     print("Player at x=3, y=4, z=0")
-    x, y, z = pos1.getPos()
+    x, y, z = pos2.getPos()
     print(f"Coordinates: x={x}, y={y}, z={z}")
