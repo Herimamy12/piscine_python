@@ -1,9 +1,6 @@
 #!/usr/bin/env python3
 
 
-import sys
-
-
 class SVault:
     def __init__(self, path):
         self.path = path
