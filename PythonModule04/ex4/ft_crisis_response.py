@@ -35,7 +35,7 @@ def main() -> None:
     print()
 
     path = "../data-generator-tools/standard_archive.txt"
-    print(f"CRISIS ALERT: Attempting access to '{path}'...")
+    print(f"ROUTINE ACCESS: Attempting access to '{path}'...")
     crisis1 = SVault(path)
     crisis1.load()
     print()
