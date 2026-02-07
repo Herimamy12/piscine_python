@@ -12,8 +12,9 @@ class DataStream(ABC):
         """Process a batch of data."""
         pass
 
-    def filter_data(self, data_batch: List[Any], criteria: Optional[str]
-                    = None) -> List[Any]:
+    def filter_data(
+        self, data_batch: List[Any], criteria: Optional[str] = None
+    ) -> List[Any]:
         """Filter data based on given criteria."""
         if criteria is None:
             return data_batch
@@ -37,13 +38,14 @@ class SensorStream(DataStream):
         return f"SensorStream {self.stream_id}: Processed {len(data_batch)} \
 values, avg={avg_value:.2f}"
 
-    def filter_data(self, data_batch, criteria=None):
+    def filter_data(
+        self, data_batch: List[float], criteria: Optional[str] = None
+    ) -> List[float]:
         return super().filter_data(data_batch, criteria)
 
     def get_stats(self) -> Dict[str, Union[str, int, float]]:
         stats = super().get_stats()
-        stats.update({"stream_id": self.stream_id,
-                     "data_count": self.data_count})
+        stats.update({"stream_id": self.stream_id, "data_count": self.data_count})
         return stats
 
 
@@ -60,13 +62,14 @@ class TransactionStream(DataStream):
         return f"TransactionStream {self.stream_id}: \
 Processed {len(data_batch)} transactions, total_amount={total_amount:.2f}"
 
-    def filter_data(self, data_batch, criteria=None):
+    def filter_data(
+        self, data_batch: List[Dict[str, Any]], criteria: Optional[str] = None
+    ) -> List[Dict[str, Any]]:
         return super().filter_data(data_batch, criteria)
 
     def get_stats(self) -> Dict[str, Union[str, int, float]]:
         stats = super().get_stats()
-        stats.update({"stream_id": self.stream_id,
-                     "data_count": self.data_count})
+        stats.update({"stream_id": self.stream_id, "data_count": self.data_count})
         return stats
 
 
@@ -82,13 +85,14 @@ class EventStream(DataStream):
         return f"EventStream {self.stream_id}: Processed {len(data_batch)} \
 events"
 
-    def filter_data(self, data_batch, criteria=None):
+    def filter_data(
+        self, data_batch: List[str], criteria: Optional[str] = None
+    ) -> List[str]:
         return super().filter_data(data_batch, criteria)
 
     def get_stats(self) -> Dict[str, Union[str, int, float]]:
         stats = super().get_stats()
-        stats.update({"stream_id": self.stream_id,
-                     "data_count": self.data_count})
+        stats.update({"stream_id": self.stream_id, "data_count": self.data_count})
         return stats
 
 
@@ -116,16 +120,15 @@ def main() -> None:
     event_stream = EventStream("event_001")
     streams = [
         (sensor_stream, [23.5, 26.7, 22.1, 24.3]),
-        (transaction_stream, [
-            {"id": 1, "amount": 100.0},
-            {"id": 2, "amount": 250.5},
-            {"id": 3, "amount": 75.25}
-        ]),
-        (event_stream, [
-            "User logged in",
-            "File uploaded",
-            "Error occurred"
-        ])
+        (
+            transaction_stream,
+            [
+                {"id": 1, "amount": 100.0},
+                {"id": 2, "amount": 250.5},
+                {"id": 3, "amount": 75.25},
+            ],
+        ),
+        (event_stream, ["User logged in", "File uploaded", "Error occurred"]),
     ]
     for stream, data_batch in streams:
         processor = StreamProcessor(stream)
@@ -139,8 +142,11 @@ def main() -> None:
         finally:
             print()
     print("=== END OF STREAM PROCESSING ===")
-    log_data = ["Error: File not found", "Warning: Low disk space",
-                "Info: System rebooted"]
+    log_data = [
+        "Error: File not found",
+        "Warning: Low disk space",
+        "Info: System rebooted",
+    ]
     event_stream = EventStream("event_002")
     processor = StreamProcessor(event_stream)
     try:
