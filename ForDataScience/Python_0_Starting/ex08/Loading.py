@@ -180,30 +180,28 @@ def ft_tqdm(iterable=None, *, total=None, desc='', leave=True,
                 # Calcul de la largeur disponible pour la barre
                 if self.ncols:
                     largeur_barre = max(
-                        3, self.ncols - len(debut) - len(suffixe))
+                        1, self.ncols - len(debut) - len(suffixe))
                 else:
                     # Détection automatique de la largeur du terminal
                     # (identique à tqdm : os.get_terminal_size sur le fd)
                     try:
                         fd = getattr(self.file, 'fileno', lambda: None)()
-                        ncols_terminal = os.get_terminal_size(fd).columns
+                        ncols_terminal = os.get_terminal_size(fd).columns - 1
                     except Exception:
                         ncols_terminal = None
                     if ncols_terminal:
                         largeur_barre = max(
-                            3, ncols_terminal - len(debut) - len(suffixe))
+                            1, ncols_terminal - len(debut) - len(suffixe))
                     else:
                         largeur_barre = 10
 
                 # Construction de la barre
                 if self.ascii:
-                    # Mode ASCII : '#' pour rempli, ' ' pour vide
                     remplis = int(largeur_barre * fraction)
                     barre = '#' * remplis + ' ' * (largeur_barre - remplis)
                 else:
-                    # Mode Unicode : █ (U+2588) et blocs partiels
                     blocs_partiels = [
-                        '', '\u258F', '\u258E', '\u258D', '\u258C',
+                        '\u258F', '\u258E', '\u258D', '\u258C',
                         '\u258B', '\u258A', '\u2589',
                     ]
                     remplis = largeur_barre * fraction
@@ -220,7 +218,13 @@ def ft_tqdm(iterable=None, *, total=None, desc='', leave=True,
                                  + blocs_partiels[reste - 1]
                                  + ' ' * (largeur_barre - pleins - 1))
 
-                return f"{debut}{barre}{suffixe}"
+                ligne = f"{debut}{barre}{suffixe}"
+
+                # Troncature à ncols (comportement tqdm)
+                if self.ncols and len(ligne) > self.ncols:
+                    ligne = ligne[:self.ncols]
+
+                return ligne
             else:
                 # Mode sans total connu
                 if self.desc:
