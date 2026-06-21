@@ -11,6 +11,7 @@ Utilisation :
         ...
 """
 
+import os
 import sys
 import time
 import shutil
@@ -32,8 +33,9 @@ def ft_tqdm(iterable=None, *, total=None, desc='', leave=True,
     leave : bool
         Si True, la barre reste affichée après la fin (défaut : True).
     ncols : int, optionnel
-        Largeur totale en caractères. Si None, la barre fait
-        10 caractères par défaut (comportement tqdm).
+        Largeur totale du message. Si spécifié, la barre s'adapte
+        à cette limite. Sinon, tente d'utiliser la largeur du
+        terminal ; la barre fait 10 caractères en dernier recours.
     mininterval : float
         Intervalle minimum en secondes entre deux mises à jour
         (défaut : 0.1).
@@ -177,12 +179,21 @@ def ft_tqdm(iterable=None, *, total=None, desc='', leave=True,
 
                 # Calcul de la largeur disponible pour la barre
                 if self.ncols:
-                    # Mode adaptatif : la barre utilise toute la largeur
                     largeur_barre = max(
                         3, self.ncols - len(debut) - len(suffixe))
                 else:
-                    # Mode par défaut : barre de 10 caractères (tqdm)
-                    largeur_barre = 10
+                    # Détection automatique de la largeur du terminal
+                    # (identique à tqdm : os.get_terminal_size sur le fd)
+                    try:
+                        fd = getattr(self.file, 'fileno', lambda: None)()
+                        ncols_terminal = os.get_terminal_size(fd).columns
+                    except Exception:
+                        ncols_terminal = None
+                    if ncols_terminal:
+                        largeur_barre = max(
+                            3, ncols_terminal - len(debut) - len(suffixe))
+                    else:
+                        largeur_barre = 10
 
                 # Construction de la barre
                 if self.ascii:
