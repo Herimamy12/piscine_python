@@ -1,6 +1,4 @@
-import elements
-import alchemy 
+import elements as el
 
 if __name__ == "__main__":
-    print(elements.create_fire())
-    print(alchemy.create_earth())
+    print(el.create_fire())
