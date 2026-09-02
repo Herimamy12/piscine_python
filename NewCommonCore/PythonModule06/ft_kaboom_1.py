@@ -16,13 +16,9 @@ if __name__ == "__main__":
     ingredients = "bats"
     result = record_dark_spell(spell_name, ingredients)
     print(result)
-    result_validation = dark_validator.validate_ingredients(ingredients)
-    print(result_validation)
 
     # Example usage with an invalid dark spell
     spell_name = "Light Burst"
     ingredients = "earth"
     result = record_dark_spell(spell_name, ingredients)
     print(result)
-    result_validation = dark_validator.validate_ingredients(ingredients)
-    print(result_validation)

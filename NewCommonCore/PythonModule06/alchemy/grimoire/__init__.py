@@ -1,4 +1,2 @@
 from .light_spellbook import light_spell_allowed_ingredients, light_spell_record
-from .dark_spellbook import dark_spell_allowed_ingredients, dark_spell_record
 from .light_validator import validate_ingredients as validate_light_ingredients
-from .dark_validator import validate_ingredients as validate_dark_ingredients

@@ -15,13 +15,9 @@ if __name__ == "__main__":
     ingredients = "earth"
     result = record_light_spell(spell_name, ingredients)
     print(result)
-    result_validation = grimoire.validate_light_ingredients(ingredients)
-    print(result_validation)
 
     # Example usage with an invalid light spell
     spell_name = "Dark Flame"
     ingredients = "bats"
     result = record_light_spell(spell_name, ingredients)
     print(result)
-    result_validation = grimoire.validate_light_ingredients(ingredients)
-    print(result_validation)

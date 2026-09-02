@@ -11,8 +11,9 @@ def light_spell_record(spell_name: str, ingredients: str):
     turns a string that indicates whether the spell is recorded or rejected. The decision
     comes from the validation function described below.
     """
-    allowed_ingredients = light_spell_allowed_ingredients()
-    if ingredients in allowed_ingredients:
+    from .light_validator import validate_ingredients
+    result = validate_ingredients(ingredients)
+    if result.endswith("- VALID"):
         return f"The spell '{spell_name}' with ingredient '{ingredients}' is recorded."
     else:
         return f"The spell '{spell_name}' with ingredient '{ingredients}' is rejected. Invalid ingredient."
